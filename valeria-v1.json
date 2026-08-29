@@ -1,0 +1,101 @@
+{
+  "name": "Zummat Bot Principal - Valeria V1",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"]
+      },
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "documentId": {
+          "__rl": true,
+          "value": "1dHnIiSIoErdtRTBf2fOj6egdbsL17phLH5Kt75YNsas",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=1926358405",
+          "mode": "id"
+        }
+      },
+      "name": "Get row(s) in sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const mensajeCliente = $('Telegram Trigger').first().json.message.text;\nconst productos = $('Get row(s) in sheet').all();\nconst catalogo = productos.map(p => {\n  const d = p.json;\n  return d.id + ' | ' + d.modelo + ' | ' + d.tipo_espacio + ' | ' + d.descripcion + ' | Precio: $' + d.precio_venta + ' MXN';\n}).join(' // ');\n\nconst systemPrompt = 'Eres Valeria, asesora de ventas de Zummat, empresa mexicana de iluminacion LED TecnoLED. Tu tono es amigable, profesional y conciso. Respondes SIEMPRE en español. CATALOGO ZUMMAT: ' + catalogo + ' REGLAS: 1) Solo recomienda productos del catalogo. 2) Selecciona EXACTAMENTE 3 productos que mejor se adapten. 3) Presenta nombre para que sirve y precio en MXN. 4) Si no sabes que espacio tiene el cliente preguntale primero. 5) NUNCA inventes productos fuera del catalogo.';\n\nconst requestBody = JSON.stringify({\n  model: 'deepseek/deepseek-chat-v3.1',\n  messages: [\n    { role: 'system', content: systemPrompt },\n    { role: 'user', content: mensajeCliente }\n  ]\n});\n\nreturn [{ json: { requestBody } }];"
+      },
+      "name": "Code in JavaScript",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "={{ $json.requestBody }}",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatId = $('Telegram Trigger').first().json.message.chat.id;\nconst input = $input.item.json;\nlet texto = '';\n\nif (input.body) {\n  try {\n    const parsed = JSON.parse(input.body);\n    texto = parsed.choices[0].message.content;\n  } catch(e) { texto = 'Hubo un error, intenta de nuevo.'; }\n} else if (input.choices) {\n  texto = input.choices[0].message.content;\n}\n\nif (!texto) texto = 'Hubo un error, intenta de nuevo.';\nconst textoLimpio = texto.split('\\n\\nThis message')[0].trim();\nreturn [{ json: { texto: textoLimpio, chatId: Number(chatId) } }];"
+      },
+      "name": "Code in JavaScript1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.texto }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "name": "Send a text message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1340, 300]
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [[{"node": "Get row(s) in sheet", "type": "main", "index": 0}]]
+    },
+    "Get row(s) in sheet": {
+      "main": [[{"node": "Code in JavaScript", "type": "main", "index": 0}]]
+    },
+    "Code in JavaScript": {
+      "main": [[{"node": "HTTP Request", "type": "main", "index": 0}]]
+    },
+    "HTTP Request": {
+      "main": [[{"node": "Code in JavaScript1", "type": "main", "index": 0}]]
+    },
+    "Code in JavaScript1": {
+      "main": [[{"node": "Send a text message", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "notes": "Bot de ventas Valeria V1 para Zummat. Requiere credenciales: Telegram Bot, Google Sheets OAuth2, OpenRouter Header Auth. Ver INSTALACION.md para configuración completa."
+}
