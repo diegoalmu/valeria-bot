@@ -6,9 +6,7 @@
 
 ## ¿Qué es esto?
 
-**Valeria** es un chatbot de ventas construido para **Zummat**, empresa mexicana de iluminación LED TecnoLED y plantas de emergencia (ipower / Hyundai).
-
-El bot recibe mensajes de clientes, entiende su necesidad y recomienda exactamente 3 productos del catálogo con nombre, descripción y precio en MXN — todo sin intervención humana.
+**Valeria** es un chatbot de ventas. El bot recibe mensajes de clientes, entiende su necesidad y recomienda exactamente 3 productos del catálogo con nombre, descripción y precio en MXN — todo sin intervención humana.
 
 ---
 
@@ -79,5 +77,5 @@ zummat-valeria-bot/
 
 ## Autor
 
-**Diego Alvarado** — CEO Zummat / Estudiante de Licenciatura en TIC  
+**Diego Alvarez** —Estudiante de Licenciatura en TIC  
 GitHub: [@diegoalmu](https://github.com/diegoalmu)
