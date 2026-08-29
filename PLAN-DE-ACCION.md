@@ -4,25 +4,29 @@
 
 ### ✅ Completado
 - Infraestructura Aztlan operativa (Oracle Cloud x86_64)
-- n8n v2.20.11 corriendo 3+ semanas sin interrupciones
+- n8n v2.31.5 corriendo estable
 - Catálogo de 408 productos TecnoLED importado a Google Sheets
 - OAuth2 Google configurado en n8n
 - Integración OpenRouter + DeepSeek v3.1 funcional
-- Valeria V1.3.2 respondiendo en Telegram con productos reales y precios en MXN
+- Valeria respondiendo en Telegram con productos reales y precios en MXN
 - Branding de n8n eliminado de mensajes Telegram
 - Red Tailscale conectando todos los servidores
 - ServerEndor expandido: 88GB sistema + 99GB fast_storage
-- cloudflared instalado y autenticado en Aztlan
+- Cloudflare Tunnel como servicio systemd permanente ✅
+- n8n.tu-dominio.example accesible 24/7 ✅
+- Bot dedicado @ValeriaZummatBot creado ✅
+- Chat ID dinámico funcionando ✅
+- Workflow reconstruido completamente ✅
+- Repositorio GitHub documentado ✅
 
 ---
 
-## 🔴 Inmediato (esta sesión)
+## 🔴 Inmediato (próxima sesión)
 
-- [ ] Configurar Cloudflare Tunnel como servicio systemd
-- [ ] Verificar `n8n.tu-dominio.example` carga correctamente
-- [ ] Reconstruir workflow "Zummat Bot Principal" en n8n
-- [ ] Crear bot @ValeriaZummatBot en Telegram via @BotFather
-- [ ] Arreglar Chat ID dinámico (bot responde a cualquier cliente)
+- [ ] Confirmar que Valeria responde a clientes públicos (no solo a Diego)
+- [ ] Activar workflow en modo producción 24/7
+- [ ] Captura de datos del cliente (nombre, teléfono, email → Google Sheets)
+- [ ] Handoff humano (keywords: "asesor", "humano", "hablar con alguien")
 
 ---
 

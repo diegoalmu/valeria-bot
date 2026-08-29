@@ -43,7 +43,54 @@
 - El túnel de Cloudflare ya existía pero sin config.yml ni servicio systemd activo.
 
 ### ⏭️ Próximo paso
-Crear `~/.cloudflared/config.yml` y activar cloudflared como servicio systemd para que `n8n.tu-dominio.example` sea estable y permanente.
+Verificar que Valeria responde a cualquier cliente (no solo a Diego), captura de datos, handoff humano.
+
+---
+
+## 2026-08-29 — Valeria V2 funcionando con bot dedicado
+
+### 🧠 Estado del arquitecto
+- **Enfoque:** Reconstruir workflow completo desde cero y resolver bug crítico del HTTP Request en n8n 2.31.5.
+- **Energía:** Alta, sesión muy larga pero con resultado exitoso.
+
+### 🚀 Logros técnicos
+
+**Cloudflare Tunnel:**
+- Tunnel `zummat-tunnel` configurado (ID: `c5044d81-179a-4ea1-b356-be363543353b`)
+- Config en `/etc/cloudflared/config.yml` apuntando a `localhost:5678`
+- Instalado como servicio systemd — sobrevive reinicios
+- `n8n.tu-dominio.example` accesible 24/7 ✅
+
+**Bot Telegram:**
+- Creado bot dedicado @ValeriaZummatBot (token nuevo)
+- Desvinculado del bot personal @demianaux_bot de Diego
+
+**Workflow reconstruido:**
+- Telegram Trigger → Get row(s) in sheet → Code JS → HTTP Request → Code JS1 → Send message
+- Google Sheets credencial OAuth2 reconectada
+- OpenRouter + DeepSeek v3.1 funcionando
+- 408 productos TecnoLED consultados en tiempo real
+
+**Bug crítico resuelto — n8n 2.31.5 HTTP Request:**
+- Problema: el `=` al inicio de expresiones (`={{ }}`) convierte objetos a string en campos JSON
+- Solución: usar `{{ }}` sin el `=` en campos JSON del HTTP Request y Telegram
+- Aplica a: Body Content Type JSON → Using JSON, y campos Chat ID / Text del nodo Telegram
+
+**Chat ID dinámico:**
+- Valeria responde al cliente que escribe, no solo a Diego
+- Campos Chat ID y Text sin el `=` → `{{ $json.chatId }}` y `{{ $json.texto }}`
+
+**Primera respuesta de Valeria (bot nuevo):**
+> "¡Hola! Soy Valeria, asesora de ventas de Zummat. Para poder recomendarte los mejores productos de iluminación LED, ¿podrías contarme sobre el espacio que necesitas iluminar?"
+
+### 📝 Notas libres
+Sesión muy larga con múltiples obstáculos técnicos. El bug del HTTP Request en n8n 2.31.5 consumió la mayor parte del tiempo — la clave fue encontrar en la comunidad que `={{ }}` convierte a string mientras `{{ }}` pasa el objeto directamente. Una vez resuelto, todo funcionó en cadena.
+
+### ⏭️ Próximos pasos
+1. Confirmar que Valeria responde a cualquier cliente público
+2. Activar workflow en modo producción 24/7
+3. Captura de datos del cliente (nombre, teléfono, email)
+4. Handoff humano (keywords: "asesor", "humano", "hablar con alguien")
 
 ---
 
