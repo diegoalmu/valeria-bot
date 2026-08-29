@@ -1,4 +1,4 @@
-# 🤖 Valeria — Bot de Ventas Automatizado para Zummat
+# 🤖 Valeria — Bot de Ventas Automatizado
 
 > Asesora de ventas con inteligencia artificial que atiende clientes en Telegram 24/7, consulta el catálogo real de productos LED y responde como una vendedora profesional.
 
