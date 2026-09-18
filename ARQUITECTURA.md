@@ -4,20 +4,20 @@
 
 | Servidor | Hardware | OS | IP Tailscale | Rol |
 |----------|----------|-----|--------------|-----|
-| **Aztlan** | Oracle Cloud x86_64, 2 CPU, 954MB RAM | Ubuntu Server | 100.X.X.1 | n8n + Valeria (producción) |
-| **ServerEndor** | AMD Ryzen 3 3200G, 4 núcleos, 13GB RAM | Ubuntu Server 24/7 | 100.X.X.2 | Zummat Hub + PostgreSQL (fase 2) |
-| **EndorPC** | Intel i5-8400T, 6 núcleos, 31GB RAM, 234GB NVMe | Linux Mint | 100.X.X.3 | Desarrollo y pruebas |
+| **Aztlan** | Oracle Cloud x86_64, 2 CPU, 954MB RAM | Ubuntu Server | 100.x.x.x (Aztlan) | n8n + Valeria (producción) |
+| **ServerEndor** | AMD Ryzen 3 3200G, 4 núcleos, 13GB RAM | Ubuntu Server 24/7 | 100.x.x.x (ServerEndor) | Zummat Hub + PostgreSQL (fase 2) |
+| **EndorPC** | Intel i5-8400T, 6 núcleos, 31GB RAM, 234GB NVMe | Linux Mint | 100.x.x.x (EndorPC) | Desarrollo y pruebas |
 
 ## Red Tailscale
 
 Todos los servidores están conectados mediante Tailscale (VPN mesh). Permite SSH directo entre máquinas sin exponer puertos públicos ni requerir IP fija.
 
 ```
-Aztlan        100.X.X.1
-EndorPC       100.X.X.3
-ServerEndor   100.X.X.2
-Fortuna       100.X.X.4
-HPGris/Trabajo 100.X.X.5
+Aztlan        100.x.x.x (Aztlan)
+EndorPC       100.x.x.x (EndorPC)
+ServerEndor   100.x.x.x (ServerEndor)
+Fortuna       100.x.x.x (Fortuna)
+HPGris/Trabajo 100.x.x.x (HPGris)
 ```
 
 ## Contenedor n8n en Aztlan
@@ -36,7 +36,7 @@ Uptime:      3+ semanas continuo
 ## Acceso público
 
 ```
-Cliente → https://n8n.tu-dominio.example → Cloudflare Tunnel → localhost:5678 → n8n
+Cliente → https://n8n.tu-dominio.ejemplo → Cloudflare Tunnel → localhost:5678 → n8n
 ```
 
 Cloudflare Tunnel instalado en Aztlan como servicio, sin necesidad de IP pública fija ni apertura de puertos en el router.

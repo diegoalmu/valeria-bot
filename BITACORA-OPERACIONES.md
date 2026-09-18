@@ -15,7 +15,7 @@
 - Descubierto que existían DOS usuarios en Aztlan: `endor` (dueño real con sudo/docker-compose) y `ubuntu` (solo acceso docker)
 - El docker-compose original está en `~/n8n/docker-compose.yml` del usuario `endor`
 - n8n lleva **3+ semanas corriendo** sin interrupciones — todos los datos intactos en `n8n_n8n_data`
-- Confirmado que `n8n.tu-dominio.example` carga (sin workflow todavía)
+- Confirmado que `n8n.tu-dominio.ejemplo` carga (sin workflow todavía)
 
 **Cloudflared:**
 - Detectado que el binario anterior era ARM64 (error de arquitectura — Aztlan es x86_64)
@@ -59,7 +59,7 @@ Verificar que Valeria responde a cualquier cliente (no solo a Diego), captura de
 - Tunnel `zummat-tunnel` configurado (ID: `c5044d81-179a-4ea1-b356-be363543353b`)
 - Config en `/etc/cloudflared/config.yml` apuntando a `localhost:5678`
 - Instalado como servicio systemd — sobrevive reinicios
-- `n8n.tu-dominio.example` accesible 24/7 ✅
+- `n8n.tu-dominio.ejemplo` accesible 24/7 ✅
 
 **Bot Telegram:**
 - Creado bot dedicado @ValeriaZummatBot (token nuevo)

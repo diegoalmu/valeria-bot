@@ -52,7 +52,7 @@ Cliente escribe en Telegram
 - ✅ n8n corriendo estable
 - ✅ Catálogo 408 productos TecnoLED importado
 - ✅ Bot @ValeriaZummatBot respondiendo en Telegram con IA
-- ✅ Cloudflare Tunnel permanente (n8n.tu-dominio.example)
+- ✅ Cloudflare Tunnel permanente (n8n.tu-dominio.ejemplo)
 - ✅ Chat ID dinámico — responde a cualquier cliente
 - 🔄 Captura de datos del cliente (próxima fase)
 - 🔄 Handoff humano (próxima fase)
@@ -71,11 +71,10 @@ zummat-valeria-bot/
 ├── BITACORA-OPERACIONES.md ← registro de sesiones y decisiones
 ├── PLAN-DE-ACCION.md       ← roadmap y pendientes
 ├── SEGURIDAD.md            ← reglas de seguridad (sin credenciales)
-├── workflows/
-│   └── valeria-v1.json     ← workflow n8n exportado
-└── catalogo/
-    └── catalogo_zummat.csv ← 408 productos TecnoLED
+└── valeria-v1.json         ← workflow n8n exportado (sin credenciales adjuntas)
 ```
+
+> Nota: el catálogo real de productos (`catalogo_zummat.csv`, con precios y datos comerciales) vive en Google Sheets, fuera de este repositorio; no se sube a git.
 
 ---
 

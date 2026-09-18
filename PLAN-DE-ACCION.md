@@ -13,7 +13,7 @@
 - Red Tailscale conectando todos los servidores
 - ServerEndor expandido: 88GB sistema + 99GB fast_storage
 - Cloudflare Tunnel como servicio systemd permanente ✅
-- n8n.tu-dominio.example accesible 24/7 ✅
+- n8n.tu-dominio.ejemplo accesible 24/7 ✅
 - Bot dedicado @ValeriaZummatBot creado ✅
 - Chat ID dinámico funcionando ✅
 - Workflow reconstruido completamente ✅
