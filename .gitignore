@@ -1,0 +1,19 @@
+# Secretos y configuración local
+.env
+*.env
+*credentials*.json
+
+# Catálogo real (precios y datos comerciales) — vive en Google Sheets, no en git
+catalogo/
+catalogo_zummat.csv
+
+# n8n local
+.n8n/
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+.obsidian/
